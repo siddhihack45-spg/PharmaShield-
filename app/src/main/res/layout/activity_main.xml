@@ -1,41 +1,500 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/bg_dark">
 
-    <Button
-        android:id="@+id/scanButton"
+    <!-- Top Action Header -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Scan Prescription with Camera" />
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="#0C1322"
+        android:gravity="center_vertical">
 
-    <Button
-        android:id="@+id/galleryButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Pick Prescription from Gallery" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    <!-- Container for dynamic red warning banner -->
-    <FrameLayout
-        android:id="@+id/bannedAlertContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PHARMA SHIELD"
+                android:textColor="@color/cyan_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AI Android Pharmaceutical Safety Suite"
+                android:textColor="@color/text_muted"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnEmergencySos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🚨 SOS"
+            android:backgroundTint="@color/crimson_danger"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="16dp">
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/resultTextView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Scan or select an image to verify drug safety status."
-            android:textSize="14sp" />
+            android:orientation="vertical">
+
+            <!-- SECTION 1: ANTI-COUNTERFEIT & GTIN PROVENANCE -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🛡️ Verification &amp; Provenance (ShieldScan)"
+                        android:textColor="@color/cyan_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Verify drug authenticity, cryptographic GTIN checksum, &amp; supply chain."
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="12dp" />
+
+                    <Button
+                        android:id="@+id/btnCameraScan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="📷 Launch Live Camera OCR Scanner"
+                        android:backgroundTint="@color/violet_accent"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp">
+
+                        <EditText
+                            android:id="@+id/etSerialInput"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="Enter Serial / GTIN..."
+                            android:textColorHint="@color/text_muted"
+                            android:textColor="@color/text_main"
+                            android:background="@color/bg_input"
+                            android:padding="12dp"
+                            android:textSize="14sp" />
+
+                        <Button
+                            android:id="@+id/btnVerifySerial"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Verify"
+                            android:backgroundTint="@color/cyan_primary"
+                            android:textColor="@color/bg_dark"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Sample Presets -->
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/chipAuthentic1"
+                                style="?android:attr/borderlessButtonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="✓ AUTHENTIC-AZ-9942"
+                                android:textColor="@color/emerald_success"
+                                android:textSize="11sp" />
+
+                            <Button
+                                android:id="@+id/chipAuthentic2"
+                                style="?android:attr/borderlessButtonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="✓ AUTHENTIC-AM-7721"
+                                android:textColor="@color/emerald_success"
+                                android:textSize="11sp" />
+
+                            <Button
+                                android:id="@+id/chipFake"
+                                style="?android:attr/borderlessButtonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="⚠️ FAKE-108"
+                                android:textColor="@color/crimson_danger"
+                                android:textSize="11sp" />
+
+                            <Button
+                                android:id="@+id/chipRecalled"
+                                style="?android:attr/borderlessButtonStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="🛑 RECALLED-404"
+                                android:textColor="@color/amber_warning"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+                    <!-- Result Output Box -->
+                    <TextView
+                        android:id="@+id/tvVerificationResult"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/bg_input"
+                        android:padding="12dp"
+                        android:text="Verification details will appear here..."
+                        android:textColor="@color/text_main"
+                        android:textSize="12sp"
+                        android:fontFamily="monospace" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- SECTION 2: AI PILL FINDER & MATCHING -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="💊 Visual Pill Matcher &amp; Identification"
+                        android:textColor="@color/violet_accent"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Filter pills by physical shape, color, and imprint code."
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="12dp" />
+
+                    <EditText
+                        android:id="@+id/etPillImprint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Search imprint code (e.g. PD 156, GSK 500)..."
+                        android:textColorHint="@color/text_muted"
+                        android:textColor="@color/text_main"
+                        android:background="@color/bg_input"
+                        android:padding="12dp"
+                        android:textSize="13sp" />
+
+                    <Button
+                        android:id="@+id/btnFilterPills"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="🔍 Search Pill Database"
+                        android:backgroundTint="@color/violet_accent"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tvPillResults"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/bg_input"
+                        android:padding="12dp"
+                        android:text="Pill matches will be displayed here..."
+                        android:textColor="@color/text_main"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- SECTION 3: MULTI-DRUG INTERACTION MATRIX -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚠️ Multi-Drug Interaction &amp; Health Matrix"
+                        android:textColor="@color/amber_warning"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select active medications &amp; patient health conditions to evaluate hazards."
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <CheckBox
+                        android:id="@+id/cbWarfarin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Warfarin (Blood Thinner)"
+                        android:textColor="@color/text_main"
+                        android:checked="true" />
+
+                    <CheckBox
+                        android:id="@+id/cbAspirin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aspirin (Antiplatelet)"
+                        android:textColor="@color/text_main"
+                        android:checked="true" />
+
+                    <CheckBox
+                        android:id="@+id/cbIbuprofen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ibuprofen (NSAID Pain Reliever)"
+                        android:textColor="@color/text_main" />
+
+                    <CheckBox
+                        android:id="@+id/cbMetformin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Metformin (Diabetes)"
+                        android:textColor="@color/text_main" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/bg_input"
+                        android:layout_marginVertical="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Patient Conditions:"
+                        android:textColor="@color/cyan_primary"
+                        android:textStyle="bold"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/cbKidney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kidney Impairment / Renal Disease"
+                        android:textColor="@color/text_main" />
+
+                    <CheckBox
+                        android:id="@+id/cbPregnancy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pregnancy / Lactation"
+                        android:textColor="@color/text_main" />
+
+                    <Button
+                        android:id="@+id/btnEvaluateMatrix"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="⚡ Calculate Interaction Hazards"
+                        android:backgroundTint="@color/amber_warning"
+                        android:textColor="@color/bg_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvInteractionOutput"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:background="@color/bg_input"
+                        android:padding="12dp"
+                        android:text="Interaction matrix evaluation results..."
+                        android:textColor="@color/text_main"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- SECTION 4: PATIENT DOSE SCHEDULE & EXPIRY MANAGER -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📅 Dose Schedule &amp; Expiry Manager"
+                        android:textColor="@color/emerald_success"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAdherenceScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Today's Adherence Score: 25%"
+                        android:textColor="@color/cyan_primary"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <CheckBox
+                        android:id="@+id/dose1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amoxicillin 500mg - Morning (08:00 AM)"
+                        android:textColor="@color/text_main"
+                        android:checked="true" />
+
+                    <CheckBox
+                        android:id="@+id/dose2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lipitor 20mg - Noon (01:00 PM) [Exp: 14 Days]"
+                        android:textColor="@color/text_main" />
+
+                    <CheckBox
+                        android:id="@+id/dose3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Metformin 500mg - Evening (07:00 PM)"
+                        android:textColor="@color/text_main" />
+
+                    <CheckBox
+                        android:id="@+id/dose4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lisinopril 10mg - Night (10:00 PM) ⚠️ Exp: 5 Days!"
+                        android:textColor="@color/crimson_danger" />
+
+                    <Button
+                        android:id="@+id/btnAutoRefill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="⚡ Auto-Refill Expiring Medicines"
+                        android:backgroundTint="@color/emerald_success"
+                        android:textColor="@color/bg_dark"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- SECTION 5: RECALL RADAR & VERIFIED CHEMIST LOCATOR -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="4dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📢 Recall Radar &amp; Verified Chemist Network"
+                        android:textColor="@color/crimson_danger"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Live advisory recall notices &amp; verified nearby authentic pharmacies."
+                        android:textColor="@color/text_muted"
+                        android:textSize="12sp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/bg_input"
+                        android:padding="12dp"
+                        android:text="🚨 FDA RECALL NOTICE: Zantac (Ranitidine HCl 150mg) Batch BATCH-RNT-404 recalled due to trace NDMA impurity."
+                        android:textColor="@color/crimson_danger"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btnCallPharmacy"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="📞 Call ShieldCare Central Pharmacy (+1-800-555-0199)"
+                        android:backgroundTint="@color/cyan_primary"
+                        android:textColor="@color/bg_dark"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>
